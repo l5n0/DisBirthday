@@ -49,14 +49,12 @@ class BirthdayCommands(commands.Cog):
     async def custom_help(self, ctx):
         """Displays the help message with available commands."""
         logging.info(f'help command called by {ctx.author}')
-        help_message = (
-            "Here are the available commands:\n"
-            f"{ctx.prefix}birthday @user DD.MM.YYYY - Set the birthday for the user.\n"
-            f"{ctx.prefix}help - Display this help message.\n"
-            f"{ctx.prefix}test_birthday - Test the birthday message sending functionality.\n"
-            f"{ctx.prefix}birthdays - Display all logged birthdays."
-        )
-        await ctx.send(help_message)
+        embed = discord.Embed(title="Help", description="Here are the available commands:", color=discord.Color.blue())
+        embed.add_field(name=f"{ctx.prefix}birthday @user DD.MM.YYYY", value="Set the birthday for the user.", inline=False)
+        embed.add_field(name=f"{ctx.prefix}help", value="Display this help message.", inline=False)
+        embed.add_field(name=f"{ctx.prefix}test_birthday", value="Test the birthday message sending functionality.", inline=False)
+        embed.add_field(name=f"{ctx.prefix}birthdays", value="Display all logged birthdays.", inline=False)
+        await ctx.send(embed=embed)
 
     @commands.command()
     async def birthdays(self, ctx):
